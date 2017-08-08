@@ -4,6 +4,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setApplicationName("myhousepayments");
+    a.setOrganizationName("Dmitriy Babkov");
 
     MainWindow w;
     w.show();

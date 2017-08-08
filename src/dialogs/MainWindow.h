@@ -1,6 +1,6 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
+#include "SettingsDialog.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -12,7 +12,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 protected:
@@ -20,6 +20,5 @@ protected:
 
 private:
     Ui::MainWindow *ui;
+    SettingsDialog settingsDialog_;
 };
-
-#endif // MAINWINDOW_H
