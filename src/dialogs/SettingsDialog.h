@@ -18,7 +18,6 @@ public:
     ~SettingsDialog();
 
     ApplicationSettings applicationSetings() const;
-    void setApplicationSetings(const ApplicationSettings &applicationSetings);
 
 protected:
     void changeEvent(QEvent *e);
@@ -30,6 +29,9 @@ private slots:
     void browseDataBaseFile();
 
     void validateDataBasePath(const QString &fileName) const;
+
+private:
+    void setApplicationSetings(const ApplicationSettings &applicationSetings);
 
 private:
     Ui::SettingsDialog *ui;
