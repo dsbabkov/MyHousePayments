@@ -1,5 +1,6 @@
 #include "SettingsDialog.h"
 #include "ui_SettingsDialog.h"
+#include <QFileDialog>
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -9,6 +10,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     settings_.beginGroup("SettingsDialog");
 
     connect (this, &QDialog::accepted, this, &SettingsDialog::saveSettings);
+    connect (this, &QDialog::rejected, [this]{setApplicationSetings(applicationSetings_);});
+    connect (ui->browseDataBaseBtn, &QToolButton::clicked, this, &SettingsDialog::browseDataBaseFile);
 
     loadSettings();
 }
@@ -38,6 +41,16 @@ void SettingsDialog::loadSettings()
 void SettingsDialog::saveSettings()
 {
     settings_.setValue("dataBasePath", ui->dataBasePathTxt->text());
+}
+
+void SettingsDialog::browseDataBaseFile()
+{
+    const QString &fileName = QFileDialog::getSaveFileName(this, tr("Choose database file"), ui->dataBasePathTxt->text());
+    if (fileName.isNull()) {
+        return;
+    }
+
+    ui->dataBasePathTxt->setText(fileName);
 }
 
 ApplicationSettings SettingsDialog::applicationSetings() const

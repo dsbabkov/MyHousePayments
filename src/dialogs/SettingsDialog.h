@@ -27,6 +27,8 @@ private slots:
     void loadSettings();
     void saveSettings();
 
+    void browseDataBaseFile();
+
 private:
     Ui::SettingsDialog *ui;
     QSettings settings_;
