@@ -51,6 +51,9 @@
    <property name="text">
     <string>Settings...</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+G</string>
+   </property>
   </action>
  </widget>
  <resources/>

@@ -1,6 +1,7 @@
 #include "SettingsDialog.h"
 #include "ui_SettingsDialog.h"
 #include <QFileDialog>
+#include <QFile>
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -12,6 +13,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect (this, &QDialog::accepted, this, &SettingsDialog::saveSettings);
     connect (this, &QDialog::rejected, [this]{setApplicationSetings(applicationSetings_);});
     connect (ui->browseDataBaseBtn, &QToolButton::clicked, this, &SettingsDialog::browseDataBaseFile);
+    connect (ui->dataBasePathTxt, &QLineEdit::textChanged, this, &SettingsDialog::validateDataBasePath);
 
     loadSettings();
 }
@@ -51,6 +53,14 @@ void SettingsDialog::browseDataBaseFile()
     }
 
     ui->dataBasePathTxt->setText(fileName);
+}
+
+void SettingsDialog::validateDataBasePath(const QString &fileName) const
+{
+
+    ui->dataBasePathTxt->setStyleSheet(QFile::exists(fileName) ?
+                                           QString() :
+                                       QStringLiteral("color: red"));
 }
 
 ApplicationSettings SettingsDialog::applicationSetings() const

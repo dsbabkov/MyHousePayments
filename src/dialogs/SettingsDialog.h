@@ -29,6 +29,8 @@ private slots:
 
     void browseDataBaseFile();
 
+    void validateDataBasePath(const QString &fileName) const;
+
 private:
     Ui::SettingsDialog *ui;
     QSettings settings_;
